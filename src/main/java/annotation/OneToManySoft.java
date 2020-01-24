@@ -6,7 +6,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Аннотация для связи one-to-many
+ * One-to-many relationship annotation
+ * 
+ * @author Anna Severyna
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
