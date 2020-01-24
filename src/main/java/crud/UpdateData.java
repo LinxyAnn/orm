@@ -15,7 +15,22 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Class for data update
+ * 
+ * @author Anna Severyna
+ */
 public class UpdateData {
+
+    /**
+     * Method updates record in datadase correspondingly the object fields values
+     * 
+     * @param       object      object which fields values are passed to database
+     * @throws      SQLException
+     * @throws      IllegalAccessException
+     * @throws      NoSuchFieldException
+     * @throws      InstantiationException
+     */
     public void updateRecord(Object object) throws SQLException, IllegalAccessException, NoSuchFieldException, InstantiationException {
         List<String> columnName = new LinkedList<>();
         List<String> columnValue = new LinkedList<>();
@@ -105,6 +120,12 @@ public class UpdateData {
 
     }
 
+    /**
+     *  Method returns string of column names of database table
+     *
+     * @param linkedList    list of column names of database table
+     * @return              string of column names of database table
+     */
     public static String listColumnsToString(List<String> linkedList){
         Iterator<String> listIter = linkedList.iterator();
         StringBuilder sb = new StringBuilder();
@@ -117,6 +138,12 @@ public class UpdateData {
         }
     }
 
+    /**
+     *  Method returns string of column names values from database table
+     *
+     * @param linkedList    list of column names values from database table
+     * @return              string of column names values from database table
+     */
     public static String listValuesToString(List <String> linkedList){
         Iterator<String> listIter = linkedList.iterator();
         StringBuilder sb = new StringBuilder();
