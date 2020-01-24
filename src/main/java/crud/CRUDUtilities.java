@@ -4,8 +4,20 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.StringJoiner;
 
+/**
+ *  Class contains auxiliary methods for create and update methods
+ *
+ * @author Anna Severyna
+ *
+ */
 public class CRUDUtilities {
 
+    /**
+     *  Method returns string of column names of database table
+     *
+     * @param linkedList    list of column names of database table
+     * @return              string of column names of database table
+     */
     public static String listColumnsToString(List<String> linkedList){
         Iterator<String> listIter = linkedList.iterator();
         StringJoiner sj = new StringJoiner(", ");
@@ -16,7 +28,12 @@ public class CRUDUtilities {
         return sj.toString().trim();
     }
 
-
+    /**
+     *  Method returns string of column names values from database table
+     *
+     * @param linkedList    list of column names values from database table
+     * @return              string of column names values from database table
+     */
     public static String listValuesToString(List <String> linkedList){
         Iterator<String> listIter = linkedList.iterator();
         StringJoiner sj = new StringJoiner(", ");
