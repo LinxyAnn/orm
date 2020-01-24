@@ -6,7 +6,9 @@ import java.lang.reflect.Field;
 import java.util.*;
 
 /**
- * Класс для хранения метаданных для аннотированных классов
+ * Class for annotated classes metadata storage
+ *
+ * @author Anna Severyna
  */
 
 public class MetaDataSchema {
@@ -33,7 +35,7 @@ public class MetaDataSchema {
     }
 
     /**
-     * Получение имени таблицы
+     * Getting table name
      */
     public static String getTableName(Object object) {
         return getTableData(object).getTableName();
@@ -41,7 +43,7 @@ public class MetaDataSchema {
 
 
     /**
-     * Методы извлечения данных по ПК
+     * Data extraction by primary key methods
      */
     public static String getIdName(Object object) {
         return getTableData(object).getIdData().getNameField();
