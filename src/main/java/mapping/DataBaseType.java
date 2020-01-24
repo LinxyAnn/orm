@@ -6,9 +6,9 @@ import java.sql.*;
 
 /**
  * Database type enumeration for converter to JavaType
-*/
-
-
+ *
+ * @author Anna Severyna
+ */
 public enum DataBaseType {
     STRING_FROM_CHAR(1, String.class, null) {
         @Override
@@ -123,6 +123,16 @@ public enum DataBaseType {
         return nameJavaTypePrimitive;
     }
 
+    /**
+     *  Abstract method for data conversion
+     * 
+     * @param object        object
+     * @param field         field name
+     * @param resultSet     incoming data resultset 
+     * @param colNumber     column number in database table
+     * @throws SQLException
+     * @throws IllegalAccessException
+     */
     public abstract void convertData(Object object, Field field, ResultSet resultSet, int colNumber) throws SQLException, IllegalAccessException;
 
 }
