@@ -8,16 +8,20 @@ import java.lang.reflect.Field;
 import java.util.Set;
 
 /**
- * Проверка класса на наличие аннотаций
+ * Class checks does the annotated class have the annotations
+ *
+ * @author Anna Severyna
  */
 
 public class AnnotationService {
 
 
     /**
-     * Общая проверка на все аннотации, чтобы передать все классы на конфигурацию
+     * Method for general checking for all annotations to pass all classes to the configuration
+     *
+     * @param   listClassAnnotaition        list of annotations
+     * @throws  AnnotationException
      */
-
     public void checkAllAnnotation(Set<Class<?>> listClassAnnotaition) throws AnnotationException {
         for (Class<?> classAnnotation : listClassAnnotaition
         ) {
@@ -27,9 +31,10 @@ public class AnnotationService {
     }
 
     /**
-     * Проверка на наличие анностации EntitySoft
+     * Method checks if @TableSoft annotation exists
      *
-     * @see TableSoft
+     * @param   classTable   table name specified in annotated class
+     * @see annotation.TableSoft
      */
     private void checkTableAnnotation(Class<?> classTable) throws AnnotationException {
         if (classTable.getAnnotation(TableSoft.class) == null) {
@@ -38,8 +43,10 @@ public class AnnotationService {
     }
 
     /**
-     * Проверка на наличие полей в классе
-     * *
+     * Method checks if field exists in specified class
+     *
+     * @param   classField      field name
+     * @throws  AnnotationException
      */
 
     private void checkField(Class<?> classField) throws AnnotationException {
