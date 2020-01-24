@@ -6,7 +6,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Аннотация для настройки таблицы
+ * Annotation for table configuration
+ * 
+ * @author Anna Severyna
  */
 
 @Target(ElementType.TYPE)
