@@ -3,8 +3,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Хранилище данных по каждой таблице: имя, поля, тип связи
- * */
+ * Class stores all tables meta data: name, fields, relation type
+ *
+ * @author Anna Severyna
+ */
 
 public class TableData {
     private String tableName;
