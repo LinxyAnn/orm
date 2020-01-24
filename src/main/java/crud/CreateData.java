@@ -14,8 +14,24 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Class contains auxiliary methods for the CRUD-operations
+ *
+ * @author Anna Severyna
+ *
+ */
 public class CreateData {
 
+    /**
+     *
+     * @param classobj  object class
+     * @param id        object id in database
+     * @return          object of specified class from database data
+     * @throws SQLException
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     * @throws ClassNotFoundException
+     */
     public Object createInstanceFromRecordById(Class<?> classobj, int id) throws SQLException, IllegalAccessException, InstantiationException, ClassNotFoundException {
         Object object = classobj.newInstance();
         TableData tableData;
@@ -41,6 +57,17 @@ public class CreateData {
         return object;
     }
 
+    /**
+     *
+     * @param classobj      object class
+     * @param columnName    object field column name in database table
+     * @param value         object field column name value in database table
+     * @return              object of specified class from database data
+     * @throws SQLException
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     * @throws ClassNotFoundException
+     */
     public Object createInstanceByValue(Class<?> classobj, String columnName, String value) throws SQLException, IllegalAccessException, InstantiationException, ClassNotFoundException {
         Object object = classobj.newInstance();
         TableData tableData;
@@ -60,6 +87,14 @@ public class CreateData {
         return object;
     }
 
+    /**
+     *
+     * @param classobj      object class
+     * @param columnName    object field column name in database table
+     * @param value         object field column name value in database table
+     * @return              resultset from database data
+     * @throws SQLException
+     */
     public ResultSet selectByValue(Class<?> classobj, String columnName, String value) throws SQLException {
         TableData tableData;
         String tableName;
@@ -83,6 +118,16 @@ public class CreateData {
         return resultSet;
     }
 
+    /**
+     *
+     * @param classobj      object class
+     * @param id            object id in database
+     * @return              object of specified class from database data
+     * @throws SQLException
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     * @throws ClassNotFoundException
+     */
     public Object createRelInstanceById(Class<?> classobj, int id) throws SQLException, IllegalAccessException, InstantiationException, ClassNotFoundException {
         Object object = classobj.newInstance();
         TableData tableData;
@@ -108,6 +153,17 @@ public class CreateData {
         return object;
     }
 
+    /**
+     *
+     * @param classobj      object class
+     * @param columnName    object field column name in database table
+     * @param value         object field column name value in database table
+     * @return              list of data obtained by foreign key
+     * @throws SQLException
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     * @throws ClassNotFoundException
+     */
     public List <?> createFkInstanceByValue(Class<?> classobj, String columnName, String value) throws SQLException, IllegalAccessException, InstantiationException, ClassNotFoundException {
         Object object = classobj.newInstance();
         List<?> collectionFK = new ArrayList<>();
