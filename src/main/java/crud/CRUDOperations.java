@@ -9,9 +9,23 @@ import metadata.TableData;
 
 import java.sql.*;
 
-
+/**
+ * Class for CRUD-methods
+ * 
+ * @author Anna Severyna
+ *
+ */
 public class CRUDOperations {
 
+    /**
+     * Method removes data of specified class object from database table by objects id
+     * 
+     * @param   classobj    object class
+     * @param   id          object id
+     * @throws  SQLException
+     * @throws  IllegalAccessException
+     * @throws  InstantiationException
+     */
     public void deleteById(Class<?> classobj, Integer id) throws SQLException, IllegalAccessException, InstantiationException {
         Object object = classobj.newInstance();
         PreparedStatement preparedStatement = null;
