@@ -10,8 +10,20 @@ import java.sql.*;
 
 import static crud.SQLStatements.*;
 
-
+/**
+ * Class removes the record in database table by ID
+ *
+ * @author Anna Severyna
+ */
 public class Remover {
+
+    /**
+     * Method removes the record in database table by ID
+     *
+     * @param   object  object as the annotated class identifier
+     * @param   id      record ID
+     * @throws  SQLException
+     */
     public void deleteById(Object object, Integer id) throws SQLException {
         TableData tableData;
         String tableName;
