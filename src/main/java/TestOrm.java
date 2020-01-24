@@ -7,6 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class tests the CRUD-methods of the application
+ * 
+ * @author Anna Severyna
+ */
 public class TestOrm {
     EntityManager entityManager;
     List<Auto> autoList = new ArrayList<>();
