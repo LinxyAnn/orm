@@ -13,7 +13,9 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Класс для создания метаданных по аннотированным классам
+ * Class creates metadata using annotated classes
+ *
+ * @author Anna Severyna
  */
 
 public class MetaDataService {
@@ -33,7 +35,10 @@ public class MetaDataService {
     }
 
     /**
-     * Метод для создания данных таблицы
+     * Method creates the table data
+     *
+     * @param annotatedClass    annotated class
+     * @throws AnnotationException
      */
     private void createTableData(Class<?> annotatedClass) throws AnnotationException {
         setTableName(annotatedClass);
@@ -45,7 +50,9 @@ public class MetaDataService {
     }
 
     /**
-     * Метод для добавления имени таблицы
+     * Method adds the table name
+     *
+     * @param classAnnotation   annotated class
      */
     private void setTableName(Class<?> classAnnotation) {
         TableSoft tableSoft = classAnnotation.getAnnotation(TableSoft.class);
@@ -57,7 +64,10 @@ public class MetaDataService {
     }
 
     /**
-     * Добавляем в таблицу данных поля
+     * Method adds fields data to the table
+     *
+     * @param   annotatedClass      annotated class
+     * @throws  AnnotationException
      */
     private void addFields(Class<?> annotatedClass) throws AnnotationException {
         Field[] fields = annotatedClass.getDeclaredFields();
@@ -77,7 +87,9 @@ public class MetaDataService {
 
 
     /**
-     * Добавление поля для первичного ключа
+     * Method adds field for primary key
+     *
+     * @param field     field name
      */
     private void addIdField(Field field) {
         this.idData = new IdData(field.getName(), field.getType().getSimpleName());
@@ -87,7 +99,9 @@ public class MetaDataService {
 
 
     /**
-     * Добавляем в таблицу поля, которые соответствуют колонкам
+     * Method adds fields to the table which corresponding to columns
+     *
+     * @param field
      */
     private void addColumnFields(Field field) {
         FieldData fieldData = new FieldData(field.getName(), field.getType().getSimpleName());
@@ -97,7 +111,10 @@ public class MetaDataService {
     }
 
     /**
-     * Добавляем в таблицу связанные поля по внешнему ключу
+     * Method adds related by foreign key fields to the table
+     *
+     * @param   field       field name
+     * @throws  AnnotationException
      */
     private void addJoinColumnFields(Field field) throws AnnotationException {
         Annotation[] annotations = field.getDeclaredAnnotations();
@@ -116,7 +133,10 @@ public class MetaDataService {
     }
 
     /**
-     * Добавляем в таблицу внешнего ключа
+     * Method adds foreign key to the table
+     *
+     * @param   field       field name
+     * @throws  AnnotationException
      */
     private void addForeignKeyFields(Field field) throws AnnotationException {
         String relation = getRelation(field);
@@ -136,7 +156,11 @@ public class MetaDataService {
     }
 
     /**
-     * Метод для получения типа связи
+     * Method returns the relation type
+     *
+     * @param       field       field name
+     * @return                  relation type string
+     * @throws      AnnotationException
      */
 
     private String getRelation(Field field) throws AnnotationException {
@@ -158,7 +182,11 @@ public class MetaDataService {
     }
 
     /**
-     * Метод для добавления имени колонки для поля
+     * Method adds column name for the field
+     *
+     * @param   field       field name
+     * @param   dataHolder  dataholder name
+     * @return              string with column name
      */
     private String setColumnName(Field field, DataHolder dataHolder) {
         String columnName;
@@ -175,10 +203,12 @@ public class MetaDataService {
 
 
     /**
-     * Проверка на аннотацию @IdSoft
-     * Эта аннотация для полей, которые являются первичным ключом
+     * Method checks if @IdSoft annotation exists
+     * @IdSoft - the annotation for the fields which are the primary key
      *
-     * @see annotation.IdSoft
+     * @param   field   field name
+     * @return  true    if @IdSoft annotation exists
+     * @see     annotation.IdSoft
      */
     private boolean isIdInBase(Field field) {
         return field.getDeclaredAnnotation(IdSoft.class) != null;
@@ -186,20 +216,23 @@ public class MetaDataService {
 
 
     /**
-     * Проверка на аннотацию @ColumnSoft
-     * Эта аннотация для полей, которые соответствуют колонкам в БД
+     * Method checks if @ColumnSoft annotation exists
+     * @ColumnSoft - the annotation for fields which corresponding to the columns in database
      *
-     * @see annotation.ColumnSoft
+     * @param   field   field name
+     * @return  true    if @ColumnSoft annotation exists
+     * @see     annotation.ColumnSoft
      */
     private boolean isColumnInBase(Field field) {
         return field.getDeclaredAnnotation(ColumnSoft.class) != null;
     }
 
-
     /**
-     * Проверка на аннотацию @ForeignKeySoft
-     * Эта аннотация для внешних ключей
+     * Method checks if @ForeignKeySoft annotation exists
+     * @ForeignKeySoft is the annotation for foreign keys
      *
+     * @param   field   field name
+     * @return  true    if @ForeignKeySoft annotation exists
      * @see annotation.ForeignKeySoft
      */
     private boolean isForeignKey(Field field) {
@@ -207,9 +240,11 @@ public class MetaDataService {
     }
 
     /**
-     * Проверка на аннотацию @JoinColumnSoft
-     * Эта аннотация для связанной таблицы по внешнему ключу
+     * Method checks if @JoinColumnSoft annotation exists
+     * @JoinColumnSoft - annotation for table related by foreign key
      *
+     * @param   field   field name
+     * @return  true    if @JoinColumnSoft annotation exists
      * @see annotation.JoinColumnSoft
      */
     private boolean isJoinColumn(Field field) {
@@ -217,8 +252,10 @@ public class MetaDataService {
     }
 
     /**
-     * Проверка на аннотацию @OneToOneSoft
+     * Method checks if @OneToOneSoft annotation exists
      *
+     * @param   field   field name
+     * @return  true if @OneToOneSoft annotation exists
      * @see annotation.OneToOneSoft
      */
     private boolean isOneToOneRel(Field field) {
@@ -226,8 +263,10 @@ public class MetaDataService {
     }
 
     /**
-     * Проверка на аннотацию @OneToManySoft
+     * Method checks if @OneToManySoft annotation exists
      *
+     * @param   field   field name
+     * @return  true if @OneToManySoft annotation exists
      * @see annotation.OneToManySoft
      */
     private boolean isOneToManyRel(Field field) {
@@ -235,8 +274,10 @@ public class MetaDataService {
     }
 
     /**
-     * Проверка на аннотацию @ManyToOneSoft
+     * Method checks if @ManyToOneSoft annotation exists
      *
+     * @param   field   field name
+     * @return  true if @ManyToOneSoft annotation exists
      * @see annotation.ManyToOneSoft
      */
     private boolean isManyToOneRel(Field field) {
@@ -244,8 +285,10 @@ public class MetaDataService {
     }
 
     /**
-     * Проверка на аннотацию @ManyToManySoft
+     * Method checks if @ManyToManySoft annotation exists
      *
+     * @param   field   field name
+     * @return  true if @ManyToManySoft annotation exists
      * @see annotation.ManyToManySoft
      */
     private boolean isManyToManyRel(Field field) {
