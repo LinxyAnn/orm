@@ -1,5 +1,10 @@
 package metadata;
 
+/**
+ * Class stores primary key data
+ *
+ * @author Anna Severyna
+ */
 public class IdData implements DataHolder {
     private String nameField;
     private String type;
