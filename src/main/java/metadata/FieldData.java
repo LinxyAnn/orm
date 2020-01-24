@@ -1,10 +1,10 @@
 package metadata;
 
 /**
- * Здесь хранятся данные о полях, полученные с помощью рефлексии. Пока тут только пара имя поля и тип. Но со временем
- * вижу, что будет расширение
- * */
-
+ * Class stores fields data obtained by reflection
+ *
+ * @author Anna Severyna
+ */
 public class FieldData implements DataHolder{
     private String nameField;
     private String type;
