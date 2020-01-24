@@ -13,7 +13,19 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.StringJoiner;
 
+/**
+ * Class updates the record in database table accordingly to the object fields values
+ *
+ * @author Anna Severyna
+ */
 public class Updater {
+    /**
+     * Method updates the record in database table accordingly to the object fields values
+     *
+     * @param   object      object which fields values need to be passed to database
+     * @throws  SQLException
+     * @throws  IllegalAccessException
+     */
     public void updateRecord(Object object) throws SQLException, IllegalAccessException {
         List<String> columnName = new LinkedList<>();
         List<String> columnValue = new LinkedList<>();
