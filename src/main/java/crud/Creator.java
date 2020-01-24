@@ -14,7 +14,20 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.StringJoiner;
 
+/**
+ * Class creates record in database table accordingly to the object fields values
+ *
+ * @author Anna Severyna
+ */
 public class Creator {
+
+    /**
+     * Method creates record in database table accordingly to the object fields values
+     *
+     * @param   object      object
+     * @throws  SQLException
+     * @throws  IllegalAccessException
+     */
     public void createRecord(Object object) throws SQLException, IllegalAccessException {
 
             List<String> columnName = new LinkedList<>();
