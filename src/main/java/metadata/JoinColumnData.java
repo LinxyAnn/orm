@@ -1,5 +1,10 @@
 package metadata;
 
+/**
+ * Class stores joined column data
+ * 
+ * @author Anna Severyna
+ */
 public class JoinColumnData implements DataHolder {
     private String nameField;
     private String nameColumn;
