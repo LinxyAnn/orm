@@ -8,9 +8,10 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
- * Класс для запуска работы ОРМ
- * Последовательно проверяет аннотации,
- * а потом расскладывает поля класса в метаданные
+ * Class starts the ORM checking annotations and then sends class fields to meta data
+ *
+ * @author Anna Severyna
+ *
  * */
 
 public class DataClassBuilder {
@@ -21,10 +22,20 @@ public class DataClassBuilder {
     public DataClassBuilder() {
     }
 
+    /**
+     * Method adds annotated class to the set of checked on annotations classes
+     *
+     * @param   annoClass     annotated class
+     */
     public void addAnnotationClass (Class<?> annoClass) {
         checkedClass.add(annoClass);
     }
 
+    /**
+     * Method builds configuration of checked on annotations classes for further handling of metadata
+     *
+     * @throws AnnotationException
+     */
     public void bulidConfig () throws AnnotationException {
         annotationService.checkAllAnnotation(checkedClass);
         metaDataService.createMetaDataSchema(checkedClass);
