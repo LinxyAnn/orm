@@ -6,7 +6,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Аннотация для указания связанного объекта по внешнему ключу
+ * Annotation indicates related by foreign key object
+ *
+ * @author Anna Severyna
  */
 
 @Target(ElementType.FIELD)
