@@ -3,8 +3,10 @@ package exception;
 import java.sql.SQLException;
 
 /**
- * Ошибка по аннотациям. Пока не уверена, что должно быть несколько эксепшенов для разных направлений,
- * может потом это будет просто один класс для всех, что-то типа ORMSoftException
+ * Annotation exception class
+ *
+ * @author Anna Severyna
+ *
  * */
 
 public class AnnotationException extends SQLException{
