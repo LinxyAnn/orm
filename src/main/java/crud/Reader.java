@@ -11,8 +11,26 @@ import static crud.SQLStatements.*;
 
 import java.sql.*;
 
+/**
+ * Class reads the record from the database table by ID and returns the object with fields values
+ * which match the values in database record
+ *
+ * @author Anna Severyna
+ */
 public class Reader {
 
+    /**
+     * Method reads the record from the database table by ID and returns the object with fields values
+     * which match the values in database record
+     *
+     * @param       object      object
+     * @param       id          database record ID
+     * @return      the object with fields values which match the values in database record
+     * @throws SQLException
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     * @throws ClassNotFoundException
+     */
     public Object createInstanceFromRecordById(Object object, int id) throws SQLException, IllegalAccessException, InstantiationException, ClassNotFoundException {
         Object resultObject = object.getClass().newInstance();
         TableData tableData;
