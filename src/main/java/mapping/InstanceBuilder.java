@@ -12,6 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Class builds instances from database table data
+ *
+ * @author Anna Severyna
+ */
 public class InstanceBuilder {
     public static Map<String, List<Integer>> joinGet;
     private Object objectNew;
@@ -24,6 +29,17 @@ public class InstanceBuilder {
     private String id;
     private String idJoin;
 
+    /**
+     * Method creates instances of classes from database data
+     *
+     * @param   objectNew   object
+     * @param   resultSet   incoming set of data from database
+     * @param   tableData   metadata about database table structure
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     */
     public void createInstance(Object objectNew, ResultSet resultSet, TableData tableData) throws SQLException, ClassNotFoundException, IllegalAccessException, InstantiationException {
         this.objectNew = objectNew;
         Class<?> classobj = objectNew.getClass();
@@ -92,11 +108,25 @@ public class InstanceBuilder {
 
     }
 
+    /**
+     * Method sets the field value from database data
+     *
+     * @param objectNew     new object which obtains fields values
+     * @param field         field name
+     * @param resultSet     incoming set of data from database
+     * @param colNumber     column number
+     */
     private void setValue(Object objectNew, Field field, ResultSet resultSet, int colNumber) {
         TypeConverter typeConverter = new TypeConverter();
         typeConverter.convertDataSqlToJava(objectNew, field, resultSet, colNumber);
     }
 
+    /**
+     * Method returns field name string from column name
+     *
+     * @param   nameColumn      column name
+     * @return  field name string
+     */
     private String getFieldName(String nameColumn) {
         String nameField = null;
         if (checkFieldName(nameColumn, idData)) {
@@ -121,10 +151,23 @@ public class InstanceBuilder {
         return nameField;
     }
 
+    /**
+     * Method checks does field have name
+     *
+     * @param   nameColumn    column name
+     * @param   dataHolder    dataholder name
+     * @return  true if field has name
+     */
     private boolean checkFieldName(String nameColumn, DataHolder dataHolder) {
         return dataHolder.getNameColumn().equals(nameColumn);
     }
 
+    /**
+     * Method joins data from different columns
+     *
+     * @param   nameColumn    column name
+     * @return  joined column
+     */
     private JoinColumnData getJoinColumnData(String nameColumn) {
         JoinColumnData joinColumnData = null;
         for (JoinColumnData joinColumnDataTemp : joinColumnDataList
@@ -136,6 +179,12 @@ public class InstanceBuilder {
         return joinColumnData;
     }
 
+    /**
+     * Method returns data by foreign key 
+     * 
+     * @param   nameColumn
+     * @return  data by foreign key 
+     */
     private ForeignKeyData getForeignKeyData(String nameColumn) {
         ForeignKeyData foreignKeyData = null;
         for (ForeignKeyData foreignKeyDataTemp : foreignKeyDataList
@@ -147,6 +196,16 @@ public class InstanceBuilder {
         return foreignKeyData;
     }
 
+    /**
+     * Method gets joined object
+     * 
+     * @param   joinColumnData  data from joined column
+     * @return  joined object
+     * @throws ClassNotFoundException
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     * @throws SQLException
+     */
     private Object getJoinObject(JoinColumnData joinColumnData) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException {
         Class<?> classNew = joinColumnData.getTypeClass();
         String className = classNew.getSimpleName();
@@ -158,6 +217,16 @@ public class InstanceBuilder {
         return object;
     }
 
+    /**
+     * Method returns object by foreign key
+     * 
+     * @param   dataHolder  dataholder name
+     * @return  object by foreign key
+     * @throws ClassNotFoundException
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     * @throws SQLException
+     */
     private List <?> getForeignObject(DataHolder dataHolder) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException {
         Class<?> classGeneric = dataHolder.getTypeClass();
         String fieldName = dataHolder.getNameColumn();
@@ -173,6 +242,15 @@ public class InstanceBuilder {
         return createData.createFkInstanceByValue(classGeneric, columnName, id);
     }
 
+    /**
+     * Method creates related instance
+     * 
+     * @param   objectNew   created object
+     * @param   resultSet   incoming data set from database
+     * @param   tableData   meta data describing table structure
+     * @throws  SQLException
+     * @throws  IllegalAccessException
+     */
     public void createInstanceRel(Object objectNew, ResultSet resultSet, TableData tableData) throws SQLException, IllegalAccessException {
         this.objectNew = objectNew;
         Class<?> classobj = objectNew.getClass();
@@ -224,6 +302,17 @@ public class InstanceBuilder {
 
     }
 
+    /**
+     * Method returns list of related instance data by foreign key 
+     * 
+     * @param   objectNew   created object
+     * @param   resultSet   incoming data set from database
+     * @param   tableData   meta data describing table structure
+     * @return  list of related instance data by foreign key
+     * @throws  SQLException
+     * @throws  IllegalAccessException
+     * @throws  InstantiationException
+     */
     public List<?> createInstanceFK(Object objectNew, ResultSet resultSet, TableData tableData) throws SQLException,  IllegalAccessException, InstantiationException {
         this.objectNew = objectNew;
         List <Object> listFK = new ArrayList<>();
@@ -257,7 +346,7 @@ public class InstanceBuilder {
                 Field field = null;
                 try {
                     if (fieldName != null) {
-                    field = objectNew.getClass().getDeclaredField(fieldName);}
+                        field = objectNew.getClass().getDeclaredField(fieldName);}
                 } catch (NoSuchFieldException e) {
                     throw new OrmSoftException("Class '" + classobj + "' does not have field" + fieldName + "'");
                 }
@@ -277,10 +366,22 @@ public class InstanceBuilder {
 
     }
 
+    /**
+     * Method checks is Id column exit
+     * 
+     * @param   fieldName   field name
+     * @return  true if Id column exits
+     */
     private boolean isIdColumn(String fieldName) {
         return idData.getNameField().equals(fieldName);
     }
 
+    /**
+     * Method checks is joined column exit
+     *
+     * @param   columnName   column name
+     * @return  true if joined column exits
+     */
     private boolean isJoinColumn(String columnName) {
         boolean result = false;
         for (JoinColumnData joinColumnData : joinColumnDataList
