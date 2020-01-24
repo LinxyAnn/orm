@@ -3,6 +3,12 @@ package connection;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * Class handles database connection data from .properties-file
+ *
+ * @author Anna Severyna
+ *
+ */
 public class ConnectionProp {
 
     private static ConnectionProp connectionProp;
@@ -27,6 +33,11 @@ public class ConnectionProp {
         }
     }
 
+    /**
+     * Method returns new instance of connection properties set for connection
+     *
+     * @return  new instance of connection properties set for connection
+     */
     public static synchronized ConnectionProp getInstance() {
         if (connectionProp == null) {
             connectionProp = new ConnectionProp();//TODO move to properties
