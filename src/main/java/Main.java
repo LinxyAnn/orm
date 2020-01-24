@@ -9,7 +9,11 @@ import model.User;
 import java.lang.reflect.Field;
 import java.sql.*;
 
-
+/**
+ * Entry point to the application
+ *
+ * @author Anna Severyna
+ */
 public class Main {
 
     public static void main(String[] args) throws SQLException, IllegalAccessException, InstantiationException, ClassNotFoundException, NoSuchFieldException {
