@@ -1,5 +1,10 @@
 package metadata;
 
+/**
+ * Class stores foreign key data
+ *
+ * @author Anna Severyna
+ */
 public class ForeignKeyData implements DataHolder {
     private String nameField;
     private String nameColumn;
