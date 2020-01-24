@@ -6,7 +6,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Аннотация для колонок
+ * Annotation for columns
+ *
+ * @author Anna Severyna
  */
 
 @Target(ElementType.FIELD)
